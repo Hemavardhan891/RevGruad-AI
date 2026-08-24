@@ -19,112 +19,127 @@ st.set_page_config(
 )
 
 # =========================================================
-# CUSTOM UI
+# PROFESSIONAL CUSTOM UI & THEME
 # =========================================================
 
 st.markdown("""
 <style>
+/* Global Styling & Background */
 .block-container {
     padding-top: 2rem;
     padding-bottom: 4rem;
-    max-width: 1500px;
+    max-width: 1550px;
 }
 
+/* Hero Banner */
 .hero {
-    padding: 30px 34px;
-    border-radius: 22px;
-    background:
-        radial-gradient(circle at 85% 20%, rgba(91,120,255,.20), transparent 30%),
-        linear-gradient(135deg,#111827,#090b10);
-    border: 1px solid rgba(255,255,255,.08);
-    margin-bottom: 22px;
+    padding: 35px 40px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 25px;
 }
 
 .hero-title {
-    font-size: 40px;
+    font-size: 38px;
     font-weight: 800;
-    margin-bottom: 7px;
+    color: #f8fafc;
+    letter-spacing: -0.5px;
+    margin-bottom: 5px;
 }
 
 .hero-subtitle {
-    color: #a7b0c0;
+    color: #94a3b8;
     font-size: 15px;
 }
 
 .status-pill {
     display: inline-block;
-    margin-top: 14px;
-    padding: 7px 14px;
+    margin-top: 16px;
+    padding: 6px 14px;
     border-radius: 999px;
-    font-size: 13px;
-    font-weight: 700;
-    background: rgba(34,197,94,.12);
-    color: #4ade80;
-    border: 1px solid rgba(34,197,94,.25);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    background: rgba(16, 185, 129, 0.1);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
+/* KPI Cards */
 .kpi-card {
-    padding: 20px;
-    border-radius: 18px;
-    background: #11151d;
-    border: 1px solid rgba(255,255,255,.08);
-    min-height: 125px;
+    padding: 22px;
+    border-radius: 16px;
+    background: #131824;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    min-height: 120px;
 }
 
 .kpi-label {
-    color: #9ca3af;
-    font-size: 13px;
-    margin-bottom: 8px;
-}
-
-.kpi-value {
-    font-size: 30px;
-    font-weight: 800;
-    color: white;
-}
-
-.kpi-note {
-    color: #8b95a7;
+    color: #94a3b8;
     font-size: 12px;
-    margin-top: 6px;
-}
-
-.section-title {
-    font-size: 25px;
-    font-weight: 750;
-    margin-top: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     margin-bottom: 6px;
 }
 
-.section-subtitle {
-    color: #8b95a7;
-    margin-bottom: 15px;
+.kpi-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff;
 }
 
+.kpi-note {
+    color: #64748b;
+    font-size: 11px;
+    margin-top: 6px;
+}
+
+/* Typography Headings */
+.section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-top: 35px;
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+}
+
+.section-subtitle {
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+/* Activity & Guardrail Containers */
 .activity-card {
-    background: #11151d;
-    border: 1px solid rgba(255,255,255,.07);
-    border-radius: 15px;
-    padding: 15px 18px;
-    margin-bottom: 9px;
+    background: #131824;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 8px;
 }
 
 .activity-id {
     font-weight: 700;
-    color: white;
+    color: #f8fafc;
+    font-size: 14px;
 }
 
 .activity-meta {
-    color: #9ca3af;
-    font-size: 13px;
+    color: #94a3b8;
+    font-size: 12px;
     margin-top: 4px;
 }
 
 .guardrail-box {
-    background: linear-gradient(135deg,#17120b,#11151d);
-    border: 1px solid rgba(251,191,36,.20);
-    border-radius: 18px;
-    padding: 24px;
+    background: linear-gradient(135deg, #1c1917 0%, #131824 100%);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 16px;
+    padding: 22px;
 }
 
 .center-text {
@@ -132,6 +147,23 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
+
+# =========================================================
+# PLOTLY THEME CONFIGURATION
+# =========================================================
+def apply_plotly_theme(fig, height=350):
+    fig.update_layout(
+        height=height,
+        template="plotly_dark",
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(family="Inter, sans-serif", color="#94a3b8", size=12),
+        margin=dict(l=15, r=15, t=30, b=15),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+    )
+    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor="rgba(255,255,255,0.04)")
+    fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor="rgba(255,255,255,0.04)")
+    return fig
 
 # =========================================================
 # SIDEBAR
@@ -539,7 +571,6 @@ def process_transaction(
         try:
             prompt = f"""
 You are a fintech revenue recovery decision agent.
-
 Analyze this failed subscription payment.
 
 Transaction:
@@ -1092,7 +1123,7 @@ st.markdown(
         Autonomous Revenue Recovery Command Center
     </div>
     <div class="status-pill">
-        {mode_icon} {ai_mode} · Deterministic Policy Guardrails Active
+        {mode_icon} {ai_mode} &nbsp;•&nbsp; Deterministic Policy Guardrails Active
     </div>
 </div>
 """,
@@ -1135,7 +1166,7 @@ for col, (icon, title, subtitle) in zip(cols, pipeline):
         st.markdown(
             f"""
 <div class="kpi-card center-text">
-    <div style="font-size:26px">{icon}</div>
+    <div style="font-size:24px; margin-bottom: 4px;">{icon}</div>
     <b>{title}</b>
     <div class="kpi-note">{subtitle}</div>
 </div>
@@ -1172,7 +1203,7 @@ with col1:
             ]
         ],
         use_container_width=True,
-        height=420,
+        height=400,
         hide_index=True,
     )
 
@@ -1181,7 +1212,7 @@ with col2:
         """
 <div class="guardrail-box">
 <h3>🤖 Agentic AI Execution Engine</h3>
-<p style="color:#9ca3af">
+<p style="color:#94a3b8; font-size:13px; margin-top:8px;">
 Risk Detection → Customer Context → AI Decision →
 Policy Guardrails → Recovery Simulation → Audit Trail
 </p>
@@ -1365,13 +1396,6 @@ if run_pipeline:
         df_processed["overridden"].sum()
     )
 
-    low_confidence_stops = int(
-        (
-            df_processed["guardrail_status"]
-            == "🛑 Low-Confidence Guardrail"
-        ).sum()
-    )
-
     revenue_recovery_rate = (
         total_recovered
         / total_revenue_at_risk
@@ -1444,11 +1468,11 @@ Measured business impact from the processed batch.
             )
 
     # =====================================================
-    # MONEY VISUAL
+    # MONEY VISUAL (ENHANCED BAR CHART)
     # =====================================================
 
     st.markdown(
-        '<div class="section-title">💵 Revenue Recovery</div>',
+        '<div class="section-title">💵 Revenue Recovery Performance</div>',
         unsafe_allow_html=True,
     )
 
@@ -1467,21 +1491,13 @@ Measured business impact from the processed batch.
                 f"₹{total_recovered:,}",
             ],
             textposition="auto",
+            marker_color=["#3b82f6", "#10b981"],
+            marker_line_width=0,
+            opacity=0.9,
         )
     )
-
-    money_fig.update_layout(
-        height=330,
-        template="plotly_dark",
-        showlegend=False,
-        margin=dict(
-            l=20,
-            r=20,
-            t=30,
-            b=20,
-        ),
-        yaxis_title="Amount (₹)",
-    )
+    apply_plotly_theme(money_fig, height=320)
+    money_fig.update_layout(yaxis_title="Amount (₹)")
 
     st.plotly_chart(
         money_fig,
@@ -1517,19 +1533,10 @@ Failed payments moving through AI analysis, policy and recovery.
                 recovered_count,
             ],
             textinfo="value+percent initial",
+            marker=dict(color=["#4f46e5", "#6366f1", "#818cf8", "#10b981"])
         )
     )
-
-    funnel_fig.update_layout(
-        height=430,
-        template="plotly_dark",
-        margin=dict(
-            l=20,
-            r=20,
-            t=30,
-            b=20,
-        ),
-    )
+    apply_plotly_theme(funnel_fig, height=380)
 
     st.plotly_chart(
         funnel_fig,
@@ -1542,7 +1549,7 @@ Failed payments moving through AI analysis, policy and recovery.
 
     st.markdown(
         """
-<div class="section-title">🛡️ Bounded Autonomy</div>
+<div class="section-title">🛡️ Bounded Autonomy Controls</div>
 <div class="section-subtitle">
 AI proposes. Deterministic policy decides what is actually allowed.
 </div>
@@ -1586,21 +1593,9 @@ AI proposes. Deterministic policy decides what is actually allowed.
     )
 
     b1, b2, b3 = st.columns(3)
-
-    b1.metric(
-        "🤖 AI Wanted Automation",
-        ai_wanted,
-    )
-
-    b2.metric(
-        "🟢 Policy Allowed",
-        policy_allowed,
-    )
-
-    b3.metric(
-        "🛡️ Policy Blocked",
-        policy_blocked,
-    )
+    b1.metric("🤖 AI Wanted Automation", ai_wanted)
+    b2.metric("🟢 Policy Allowed", policy_allowed)
+    b3.metric("🛡️ Policy Blocked", policy_blocked)
 
     autonomy_fig = px.bar(
         pd.DataFrame({
@@ -1615,21 +1610,19 @@ AI proposes. Deterministic policy decides what is actually allowed.
                 policy_blocked,
             ],
         }),
-        x="Category",
-        y="Transactions",
+        x="Transactions",
+        y="Category",
+        orientation="h",
         text="Transactions",
+        color="Category",
+        color_discrete_map={
+            "AI Wanted Automation": "#60a5fa",
+            "Policy Allowed": "#34d399",
+            "Policy Blocked": "#f87171"
+        }
     )
-
-    autonomy_fig.update_layout(
-        height=350,
-        template="plotly_dark",
-        margin=dict(
-            l=20,
-            r=20,
-            t=30,
-            b=20,
-        ),
-    )
+    apply_plotly_theme(autonomy_fig, height=300)
+    autonomy_fig.update_layout(showlegend=False, yaxis_title="")
 
     st.plotly_chart(
         autonomy_fig,
@@ -1644,7 +1637,7 @@ AI proposes. Deterministic policy decides what is actually allowed.
         """
 <div class="section-title">🔥 Risk Intelligence Heatmap</div>
 <div class="section-subtitle">
-Failure type versus calculated risk level.
+Failure type versus calculated risk level distribution.
 </div>
 """,
         unsafe_allow_html=True,
@@ -1654,19 +1647,8 @@ Failure type versus calculated risk level.
 
     risk_temp["risk_bucket"] = pd.cut(
         risk_temp["risk_score"],
-        bins=[
-            -1,
-            39,
-            69,
-            89,
-            101,
-        ],
-        labels=[
-            "Low",
-            "Medium",
-            "High",
-            "Critical",
-        ],
+        bins=[-1, 39, 69, 89, 101],
+        labels=["Low", "Medium", "High", "Critical"],
     )
 
     heatmap_data = pd.crosstab(
@@ -1674,40 +1656,19 @@ Failure type versus calculated risk level.
         risk_temp["risk_bucket"],
     )
 
-    for bucket in [
-        "Low",
-        "Medium",
-        "High",
-        "Critical",
-    ]:
+    for bucket in ["Low", "Medium", "High", "Critical"]:
         if bucket not in heatmap_data.columns:
             heatmap_data[bucket] = 0
 
-    heatmap_data = heatmap_data[
-        [
-            "Low",
-            "Medium",
-            "High",
-            "Critical",
-        ]
-    ]
+    heatmap_data = heatmap_data[["Low", "Medium", "High", "Critical"]]
 
     heatmap_fig = px.imshow(
         heatmap_data,
         text_auto=True,
         aspect="auto",
+        color_continuous_scale="Viridis",
     )
-
-    heatmap_fig.update_layout(
-        height=400,
-        template="plotly_dark",
-        margin=dict(
-            l=20,
-            r=20,
-            t=30,
-            b=20,
-        ),
-    )
+    apply_plotly_theme(heatmap_fig, height=360)
 
     st.plotly_chart(
         heatmap_fig,
@@ -1720,9 +1681,9 @@ Failure type versus calculated risk level.
 
     st.markdown(
         """
-<div class="section-title">🔀 AI → Guardrail → Final Action</div>
+<div class="section-title">🔀 AI Action to Guardrail & Final Action Flow</div>
 <div class="section-subtitle">
-Visual proof that AI does not have unrestricted execution authority.
+Visual proof tracking how AI recommendations transform under policies.
 </div>
 """,
         unsafe_allow_html=True,
@@ -1755,58 +1716,35 @@ Visual proof that AI does not have unrestricted execution authority.
 
     grouped = (
         df_processed
-        .groupby(
-            [
-                "ai_recommendation",
-                "final_action",
-            ]
-        )
+        .groupby(["ai_recommendation", "final_action"])
         .size()
     )
 
-    source = []
-    target = []
-    values = []
+    source, target, values = [], [], []
 
     for (ai_action, final_action), count in grouped.items():
-
-        if (
-            ai_action in action_source
-            and final_action in action_target
-        ):
-            source.append(
-                action_source[ai_action]
-            )
-            target.append(
-                action_target[final_action]
-            )
+        if ai_action in action_source and final_action in action_target:
+            source.append(action_source[ai_action])
+            target.append(action_target[final_action])
             values.append(int(count))
 
     sankey_fig = go.Figure(
         go.Sankey(
             node=dict(
-                pad=25,
-                thickness=22,
+                pad=20,
+                thickness=18,
                 label=labels,
+                color="#6366f1"
             ),
             link=dict(
                 source=source,
                 target=target,
                 value=values,
+                color="rgba(99, 102, 241, 0.3)"
             ),
         )
     )
-
-    sankey_fig.update_layout(
-        height=500,
-        template="plotly_dark",
-        margin=dict(
-            l=20,
-            r=20,
-            t=30,
-            b=20,
-        ),
-    )
+    apply_plotly_theme(sankey_fig, height=450)
 
     st.plotly_chart(
         sankey_fig,
@@ -1827,11 +1765,7 @@ Visual proof that AI does not have unrestricted execution authority.
         .value_counts()
         .reset_index()
     )
-
-    action_counts.columns = [
-        "Action",
-        "Transactions",
-    ]
+    action_counts.columns = ["Action", "Transactions"]
 
     action_fig = px.bar(
         action_counts,
@@ -1839,18 +1773,11 @@ Visual proof that AI does not have unrestricted execution authority.
         y="Action",
         orientation="h",
         text="Transactions",
+        color="Action",
+        color_discrete_sequence=px.colors.qualitative.Pastel
     )
-
-    action_fig.update_layout(
-        height=350,
-        template="plotly_dark",
-        margin=dict(
-            l=20,
-            r=20,
-            t=30,
-            b=20,
-        ),
-    )
+    apply_plotly_theme(action_fig, height=320)
+    action_fig.update_layout(showlegend=False, yaxis_title="")
 
     st.plotly_chart(
         action_fig,
@@ -1863,7 +1790,7 @@ Visual proof that AI does not have unrestricted execution authority.
 
     st.markdown(
         """
-<div class="section-title">⚡ Recovery Activity</div>
+<div class="section-title">⚡ Recovery Activity Feed</div>
 <div class="section-subtitle">
 Representative decisions from the processed batch.
 </div>
@@ -1886,19 +1813,10 @@ Representative decisions from the processed batch.
             f"""
 <div class="activity-card">
 <div class="activity-id">
-{result["transaction_id"]}
-· ₹{result["amount"]:,}
-· {result["failure_reason"]}
+{result["transaction_id"]} &nbsp;•&nbsp; ₹{result["amount"]:,} &nbsp;•&nbsp; {result["failure_reason"]}
 </div>
-
 <div class="activity-meta">
-AI:
-<b>{result["ai_recommendation"]}</b>
-→ Final:
-<b>{result["final_action"]}</b>
-· {status}
-· Risk:
-<b>{result["risk_score"]}/100</b>
+AI: <b>{result["ai_recommendation"]}</b> → Final: <b>{result["final_action"]}</b> &nbsp;|&nbsp; Status: <b>{status}</b> &nbsp;|&nbsp; Risk: <b>{result["risk_score"]}/100</b>
 </div>
 </div>
 """,
@@ -1906,7 +1824,7 @@ AI:
         )
 
     # =====================================================
-    # ROI
+    # ROI & SYSTEM PERFORMANCE
     # =====================================================
 
     st.markdown(
@@ -1914,54 +1832,16 @@ AI:
         unsafe_allow_html=True,
     )
 
-    review_cost_avoided = (
-        automated_eligible
-        * avg_human_review_cost
-    )
-
-    automation_cost = (
-        automated_eligible
-        * automation_cost_per_txn
-    )
-
-    net_savings = (
-        review_cost_avoided
-        - automation_cost
-    )
-
-    roi_percent = (
-        net_savings
-        / automation_cost
-        * 100
-        if automation_cost > 0
-        else 0
-    )
+    review_cost_avoided = automated_eligible * avg_human_review_cost
+    automation_cost = automated_eligible * automation_cost_per_txn
+    net_savings = review_cost_avoided - automation_cost
+    roi_percent = (net_savings / automation_cost * 100) if automation_cost > 0 else 0
 
     r1, r2, r3, r4 = st.columns(4)
-
-    r1.metric(
-        "Human Review Cost Avoided",
-        f"₹{review_cost_avoided:,}",
-    )
-
-    r2.metric(
-        "Automation Cost",
-        f"₹{automation_cost:,}",
-    )
-
-    r3.metric(
-        "Net Operational Savings",
-        f"₹{net_savings:,}",
-    )
-
-    r4.metric(
-        "Estimated ROI",
-        f"{roi_percent:,.0f}%",
-    )
-
-    # =====================================================
-    # SECONDARY METRICS
-    # =====================================================
+    r1.metric("Human Review Avoided", f"₹{review_cost_avoided:,}")
+    r2.metric("Automation Cost", f"₹{automation_cost:,}")
+    r3.metric("Net Operational Savings", f"₹{net_savings:,}")
+    r4.metric("Estimated ROI", f"{roi_percent:,.0f}%")
 
     st.markdown(
         '<div class="section-title">📊 System Performance</div>',
@@ -1969,29 +1849,13 @@ AI:
     )
 
     s1, s2, s3, s4 = st.columns(4)
-
-    s1.metric(
-        "AI Decisions",
-        ai_decisions,
-    )
-
-    s2.metric(
-        "AI Call Failures",
-        ai_failures,
-    )
-
-    s3.metric(
-        "Human Escalations",
-        escalated_count,
-    )
-
-    s4.metric(
-        "Transaction Recovery Rate",
-        f"{transaction_recovery_rate:.1f}%",
-    )
+    s1.metric("AI Decisions", ai_decisions)
+    s2.metric("AI Call Failures", ai_failures)
+    s3.metric("Human Escalations", escalated_count)
+    s4.metric("Txn Recovery Rate", f"{transaction_recovery_rate:.1f}%")
 
     # =====================================================
-    # RESULTS TABLE
+    # RESULTS TABLE & INSPECTORS
     # =====================================================
 
     st.markdown(
@@ -2017,147 +1881,12 @@ AI:
             ]
         ],
         use_container_width=True,
-        height=500,
+        height=450,
         hide_index=True,
     )
 
     # =====================================================
-    # AI INSPECTOR
-    # =====================================================
-
-    st.markdown(
-        '<div class="section-title">🧠 AI Decision Inspector</div>',
-        unsafe_allow_html=True,
-    )
-
-    with st.expander(
-        "🔍 Inspect AI reasoning for sample transactions"
-    ):
-
-        for _, result in df_processed.head(10).iterrows():
-
-            if result["overridden"]:
-                override_note = (
-                    "⚠️ **Overridden by guardrail**  \n"
-                    f"AI proposed `{result['ai_recommendation']}` → "
-                    f"Policy forced `{result['final_action']}`"
-                )
-            else:
-                override_note = (
-                    "✅ AI recommendation executed as-is"
-                )
-
-            error_note = ""
-
-            if result["ai_error"]:
-                error_note = (
-                    f"\n**AI Error:** "
-                    f"`{result['ai_error']}`"
-                )
-
-            stage_note = ""
-
-            if isinstance(
-                result["stage_detail"],
-                dict,
-            ):
-                stage = result["stage_detail"]
-                stage_note = (
-                    f"\n**Card Update Workflow:** "
-                    f"Updated card = "
-                    f"`{stage['customer_updated_card']}`"
-                )
-
-            st.markdown(
-                f"""
-### {result["transaction_id"]}
-
-**Customer:** {result["customer"]}  
-**Amount:** ₹{result["amount"]:,}  
-**Failure:** `{result["failure_reason"]}`  
-**Risk:** `{result["risk_score"]}/100 ({result["risk_level"]})`  
-**Trend:** {result["trend_note"]}  
-**AI Recommendation:** `{result["ai_recommendation"]}`  
-**Final Action:** `{result["final_action"]}`  
-**Confidence:** `{result["confidence"]}%`  
-**Recovery Probability:** `{result["recovery_probability"]}%`
-
-{override_note}
-{error_note}
-{stage_note}
-
-**Why:**  
-{result["explanation"]}
-
-**Execution:**  
-{result["execution_message"]}
-
-**Recovered:**  
-₹{result["recovered_amount"]:,}
-
----
-"""
-            )
-
-    # =====================================================
-    # GUARDRAIL INSPECTOR
-    # =====================================================
-
-    st.markdown(
-        '<div class="section-title">🛡️ Policy Guardrail Decisions</div>',
-        unsafe_allow_html=True,
-    )
-
-    guardrail_df = df_processed[
-        df_processed["guardrail_status"]
-        != "Passed Guardrails"
-    ]
-
-    if len(guardrail_df) > 0:
-
-        st.dataframe(
-            guardrail_df[
-                [
-                    "transaction_id",
-                    "amount",
-                    "failure_reason",
-                    "risk_score",
-                    "confidence",
-                    "guardrail_status",
-                    "ai_recommendation",
-                    "final_action",
-                ]
-            ],
-            use_container_width=True,
-            hide_index=True,
-        )
-
-    else:
-        st.success(
-            "No guardrails were triggered in this batch."
-        )
-
-    # =====================================================
-    # AUDIT TRAIL
-    # =====================================================
-
-    st.markdown(
-        '<div class="section-title">🔎 Audit Trail</div>',
-        unsafe_allow_html=True,
-    )
-
-    with st.expander(
-        "View complete structured audit trail"
-    ):
-
-        for log in df_processed["audit_log"]:
-            st.code(
-                log,
-                language="text",
-            )
-
-    # =====================================================
-    # EXPORT
+    # EXPORT BUTTONS
     # =====================================================
 
     st.markdown(
@@ -2165,31 +1894,24 @@ AI:
         unsafe_allow_html=True,
     )
 
-    export_cols = [
-        c for c in df_processed.columns
-        if c != "stage_detail"
-    ]
+    export_cols = [c for c in df_processed.columns if c != "stage_detail"]
+    csv_data = df_processed[export_cols].to_csv(index=False).encode("utf-8")
 
-    csv_data = (
-        df_processed[export_cols]
-        .to_csv(index=False)
-        .encode("utf-8")
-    )
-
-    st.download_button(
-        "📊 Download Batch Results CSV",
-        data=csv_data,
-        file_name="revguard_recovery_results.csv",
-        mime="text/csv",
-    )
-
-    audit_text = "\n".join(
-        df_processed["audit_log"]
-    )
-
-    st.download_button(
-        "🔎 Download Audit Trail",
-        data=audit_text.encode("utf-8"),
-        file_name="revguard_audit_trail.txt",
-        mime="text/plain",
-    )
+    col_exp1, col_exp2 = st.columns(2)
+    with col_exp1:
+        st.download_button(
+            "📊 Download Batch Results CSV",
+            data=csv_data,
+            file_name="revguard_recovery_results.csv",
+            mime="text/csv",
+            use_container_width=True,
+        )
+    with col_exp2:
+        audit_text = "\n".join(df_processed["audit_log"])
+        st.download_button(
+            "🔎 Download Audit Trail",
+            data=audit_text.encode("utf-8"),
+            file_name="revguard_audit_trail.txt",
+            mime="text/plain",
+            use_container_width=True,
+        )
